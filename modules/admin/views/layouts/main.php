@@ -143,7 +143,7 @@ AppAsset::addJs($this,'admin/js/plugins/morris/morris-data.js');
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="<?= Url::to('admin/index/logout'); ?>"><i class="fa fa-fw fa-power-off"></i>退出</a>
+                        <a href="<?= Url::to(['index/logout']); ?>"><i class="fa fa-fw fa-power-off"></i>退出</a>
                     </li>
                 </ul>
             </li>

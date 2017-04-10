@@ -7,7 +7,6 @@
  */
 /* @var $this \yii\web\View */
 use app\assets\AppAsset;
-use Yii;
 use yii\bootstrap\Alert;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
