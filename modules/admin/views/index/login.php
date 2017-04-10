@@ -10,6 +10,8 @@ use app\assets\AppAsset;
 use Yii;
 use yii\bootstrap\Alert;
 use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+AppAsset::register($this);
 $this->title='登录';
 AppAsset::addCss($this,'admin/css/login.css');
 AppAsset::addJs($this,'admin/js/Particleground.js');
@@ -44,8 +46,21 @@ if( Yii::$app->getSession()->hasFlash('error') ) {
      'body' => Yii::$app->getSession()->getFlash('error'),
  ]);
 }
-?>
 
+?>
+<?php $this->beginPage(); ?>
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport"
+       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+ <meta http-equiv="X-UA-Compatible" content="ie=edge">
+ <title><?= Html::encode($this->title) ?></title>
+ <?php $this->head(); ?>
+</head>
+<body>
+<?php $this->beginBody(); ?>
 <dl class="admin_login">
  <dt>
   <strong>站点后台管理系统</strong>
@@ -58,7 +73,17 @@ if( Yii::$app->getSession()->hasFlash('error') ) {
  ]);?>
  <?=$form->field($model,'username')->label('用户名');?>
  <?=$form->field($model,'password')->passwordInput()->label('密码');?>
+ <?= $form->field($model, 'rememberMe')->checkbox(); ?>
  <?=\yii\helpers\Html::submitButton('登录',['class'=>'btn btn-default'])?>
  <?php ActiveForm::end(); ?>
 </dl>
+<?php $this->endBody(); ?>
+</body>
+</html>
+<?php $this->endPage(); ?>
+
+
+
+
+
 

@@ -6,12 +6,17 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'defaultRoute' => 'admin/', //默认路由
+    'controller' => 'index', //默认控制器
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
     ],
     'components' => [
+        'assetManager' => [
+            'appendTimestamp' => true, //assets依赖时间戳参数
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'lc0ssxNrn6EvweNOBY6ECHPkBxRakiAl',
@@ -46,9 +51,15 @@ $config = [
 
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => true,
+            'showScriptName' => false,
             'rules' => [
+                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
+        ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            'db' => 'db',  // 数据库连接的应用组件ID
+            'sessionTable' => 'sw_session', // session 数据表名，默认为'session'.
         ],
 
     ],

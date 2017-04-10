@@ -22,9 +22,11 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
     ];
+    //依赖文件
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset'
     ];
 
     //导入当前页的功能js文件，注意加载顺序，这个应该最后调用

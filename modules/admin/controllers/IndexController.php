@@ -8,7 +8,6 @@
 
 namespace app\modules\admin\controllers;
 use app\models\LoginForm;
-use app\models\User;
 use Yii;
 use yii\db\Query;
 use yii\web\Controller;
@@ -21,7 +20,9 @@ class IndexController extends Controller
      */
     public function actionIndex()
     {
-
+        if (Yii::$app->user->isGuest) {
+            $this->redirect('admin/index/login');
+        }
         return $this->render('index');
     }
 
@@ -30,15 +31,27 @@ class IndexController extends Controller
      */
     public function actionLogin()
     {
+
         $model = new LoginForm();
-//        \Yii::$app->getSession()->setFlash('success', '登录成功');
         $request= Yii::$app->request;
         if($model->load($request->post()) && $model->login()){
-
+            Yii::$app->getSession()->setFlash('success', '登录成功');
+            return $this->goBack();
         }else{
-            return $this->render('login',['model'=>$model]);
+            return $this->renderPartial('login',['model'=>$model]);
         }
 
+    }
+
+    /**
+     *退出登录
+     *
+     * @return string
+     */
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+        return $this->goHome();
     }
 
 }
