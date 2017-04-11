@@ -6,6 +6,9 @@ use app\models\Cate;
 use Yii;
 use app\models\News;
 use app\models\SearchNews;
+use yii\behaviors\TimestampBehavior;
+use yii\db\BaseActiveRecord;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -21,12 +24,33 @@ class NewsController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(), // 使用核心过滤器Access 对执行动作进行验证
+                'denyCallback' => function($rule, $action){ //认证失败后回调函数
+                    $this->goHome();
+                },
+                'rules' => [ // 规则
+                    [
+                        'actions' => [],
+                        'allow' => true, // 只允许认证用户进行访问
+                        'roles' => ['@'], //?为游客 @为认证用户
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
                 ],
             ],
+            'timestamp'=>[
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['inputtime','updatetime'],
+                    BaseActiveRecord::EVENT_BEFORE_UPDATE => 'updatetime'
+                ],
+                'value' => time()
+            ]
         ];
     }
 

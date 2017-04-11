@@ -10,6 +10,7 @@ namespace app\modules\admin\controllers;
 use app\models\LoginForm;
 use Yii;
 use yii\db\Query;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 
 class IndexController extends Controller

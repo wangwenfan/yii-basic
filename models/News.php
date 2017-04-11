@@ -38,6 +38,7 @@ class News extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['title'], 'string', 'max' => 100],
             [['description'], 'string', 'max' => 200],
+            [['thumb', 'title'], 'string', 'max' => 100],
             [['catid'], 'exist', 'skipOnError' => true, 'targetClass' => Cate::className(), 'targetAttribute' => ['catid' => 'catid']],
         ];
     }
@@ -51,6 +52,7 @@ class News extends \yii\db\ActiveRecord
             'news_id' => '文章ID',
             'catid' => '栏目ID',
             'title' => '标题',
+            'thumb' => '封面图片',
             'description' => '描述',
             'content' => '内容',
             'inputtime' => '添加时间',

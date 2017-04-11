@@ -6,9 +6,10 @@ use Yii;
 use app\models\Cate;
 use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
-use yii\data\Pagination;
 use yii\db\ActiveRecord;
+use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 /**
@@ -23,6 +24,19 @@ class CateController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(), // 使用核心过滤器Access 对执行动作进行验证
+                'denyCallback' => function($rule, $action){
+                    $this->goHome();
+                },
+                'rules' => [ // 规则
+                    [
+                        'actions' => [],
+                        'allow' => true, // 只允许认证用户进行访问
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
