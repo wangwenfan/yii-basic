@@ -48,13 +48,13 @@ class News extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'news_id' => 'News ID',
-            'catid' => 'Catid',
-            'title' => 'Title',
-            'description' => 'Description',
-            'content' => 'Content',
-            'inputtime' => 'Inputtime',
-            'status' => 'Status',
+            'news_id' => '文章ID',
+            'catid' => '栏目ID',
+            'title' => '标题',
+            'description' => '描述',
+            'content' => '内容',
+            'inputtime' => '添加时间',
+            'status' => '状态',
         ];
     }
 
@@ -64,5 +64,11 @@ class News extends \yii\db\ActiveRecord
     public function getCat()
     {
         return $this->hasOne(Cate::className(), ['catid' => 'catid']);
+    }
+
+    public function findCateName()
+    {
+        return Cate::find()->where('catid=:catid',['catid'=>$this->catid])->one();
+
     }
 }

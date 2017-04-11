@@ -3030,5 +3030,99 @@
             }
         ],
         "description": "BDD code blocks for PHPUnit and Codeception"
+    },
+    {
+        "name": "yiidoc/yii2-redactor",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiidoc/yii2-redactor.git",
+            "reference": "9848704a8bef370a0f09f3be0dd7a052d5ad3d32"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/yiidoc/yii2-redactor/9848704a8bef370a0f09f3be0dd7a052d5ad3d32.zip",
+            "reference": "9848704a8bef370a0f09f3be0dd7a052d5ad3d32",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2016-01-07T06:45:09+00:00",
+        "type": "yii2-extension",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\redactor\\": "/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Nghia Nguyen",
+                "email": "zinzinday@gmail.com"
+            }
+        ],
+        "description": "Extension redactor for Yii2 Framework.",
+        "keywords": [
+            "Redactor",
+            "extension",
+            "html editor",
+            "imperavi",
+            "wysiwyg",
+            "yii2"
+        ]
+    },
+    {
+        "name": "ijackua/yii2-lepture-markdown-editor-widget",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/iJackUA/yii2-lepture-markdown-editor-widget.git",
+            "reference": "de705a20bef6452666c5f6112308d46e5897d08f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/iJackUA/yii2-lepture-markdown-editor-widget/de705a20bef6452666c5f6112308d46e5897d08f.zip",
+            "reference": "de705a20bef6452666c5f6112308d46e5897d08f",
+            "shasum": ""
+        },
+        "require": {
+            "yiisoft/yii2": "*"
+        },
+        "time": "2015-10-14T19:37:01+00:00",
+        "type": "yii2-extension",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "ijackua\\lepture\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Evgeniy Kuzminov",
+                "email": "kyzminov@gmail.com",
+                "homepage": "http://stdout.in"
+            }
+        ],
+        "description": "Yii2 widget for Lepture Markdown Editor (https://github.com/lepture/editor) - A markdown editor you really want",
+        "homepage": "https://github.com/iJackUA/yii2-lepture-markdown-editor-widget",
+        "keywords": [
+            "editor",
+            "extension",
+            "lepture",
+            "markdown",
+            "widget",
+            "yii"
+        ]
     }
 ]

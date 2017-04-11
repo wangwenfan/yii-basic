@@ -34,6 +34,9 @@ class IndexController extends Controller
     public function actionLogin()
     {
 
+        if(!Yii::$app->user->isGuest){
+            return $this->goHome();
+        }
         $model = new LoginForm();
         $request= Yii::$app->request;
         if($model->load($request->post()) && $model->login()){

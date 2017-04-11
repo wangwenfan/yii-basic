@@ -12,6 +12,10 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'imageAllowExtensions'=>['jpg','png','gif']
+        ],
     ],
     'components' => [
         'assetManager' => [
@@ -20,6 +24,7 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'lc0ssxNrn6EvweNOBY6ECHPkBxRakiAl',
+            'enableCsrfValidation' => false, //关闭csrf验证
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -55,6 +60,7 @@ $config = [
             'rules' => [
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
             ],
+            'suffix' => '.html',
         ],
         'session' => [
             'class' => 'yii\web\DbSession',
@@ -79,7 +85,7 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        'allowedIPs' => ['127.0.0.1', '127.0.0.1'],
+        'allowedIPs' => ['10.10.12.232', '10.10.12.232'],
     ];
 }
 

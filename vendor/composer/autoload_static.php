@@ -18,6 +18,7 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\redactor\\' => 13,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
             'yii\\debug\\' => 10,
@@ -28,6 +29,10 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         'p' => 
         array (
             'phpDocumentor\\Reflection\\' => 25,
+        ),
+        'i' => 
+        array (
+            'ijackua\\lepture\\' => 16,
         ),
         'c' => 
         array (
@@ -80,6 +85,10 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
         ),
+        'yii\\redactor\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiidoc/yii2-redactor',
+        ),
         'yii\\gii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-gii',
@@ -109,6 +118,10 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'ijackua\\lepture\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ijackua/yii2-lepture-markdown-editor-widget',
         ),
         'cebe\\markdown\\' => 
         array (

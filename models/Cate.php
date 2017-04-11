@@ -34,6 +34,7 @@ class Cate extends \yii\db\ActiveRecord
             [['inputtime'], 'integer'],
             [['catname'], 'string', 'max' => 100],
             [['description'], 'string', 'max' => 200],
+            [['catname'], 'unique'],
         ];
     }
 

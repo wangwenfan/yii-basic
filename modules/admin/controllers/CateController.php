@@ -6,6 +6,7 @@ use Yii;
 use app\models\Cate;
 use yii\behaviors\TimestampBehavior;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\db\ActiveRecord;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -15,6 +16,7 @@ use yii\filters\VerbFilter;
  */
 class CateController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -47,9 +49,13 @@ class CateController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Cate::find(),
+            'pagination' => [
+                'pageSize' => 10,
+            ],
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -75,8 +81,9 @@ class CateController extends Controller
         $model = new Cate();
         $model->inputtime=time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $model->catid]);
         } else {
+            $this->getView()->title='新增栏目';
             return $this->render('create', [
                 'model' => $model,
             ]);
@@ -96,7 +103,8 @@ class CateController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->catid]);
         } else {
-            return $this->render('update', [
+            $this->getView()->title='修改栏目';
+            return $this->render('create', [
                 'model' => $model,
             ]);
         }

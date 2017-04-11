@@ -48,4 +48,22 @@ return array (
       '@yii/faker' => $vendorDir . '/yiisoft/yii2-faker',
     ),
   ),
+  'yiidoc/yii2-redactor' => 
+  array (
+    'name' => 'yiidoc/yii2-redactor',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@yii/redactor' => '/',
+    ),
+  ),
+  'ijackua/yii2-lepture-markdown-editor-widget' => 
+  array (
+    'name' => 'ijackua/yii2-lepture-markdown-editor-widget',
+    'version' => '9999999-dev',
+    'alias' => 
+    array (
+      '@ijackua/lepture' => $vendorDir . '/ijackua/yii2-lepture-markdown-editor-widget',
+    ),
+  ),
 );
