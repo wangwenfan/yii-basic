@@ -232,5 +232,6 @@ ul.alert-dropdown {
     position: relative;
     z-index: 9999999;
     top: 72px;
-    left: 225px;
+    left: 43%;
+    width: 15%;
 }

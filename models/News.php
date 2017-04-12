@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%news}}".
@@ -27,13 +28,27 @@ class News extends \yii\db\ActiveRecord
         return '{{%news}}';
     }
 
+    /**自动写入时间
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+           [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'inputtime',
+                'updatedAtAttribute' => 'updatetime',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['catid', 'title', 'description', 'content', 'inputtime'], 'required'],
+            [['catid', 'title', 'description', 'content'], 'required'],
             [['catid', 'inputtime', 'status'], 'integer'],
             [['content'], 'string'],
             [['title'], 'string', 'max' => 100],

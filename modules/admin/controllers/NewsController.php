@@ -3,11 +3,12 @@
 namespace app\modules\admin\controllers;
 
 use app\models\Cate;
+use app\models\Upload;
 use Yii;
 use app\models\News;
 use app\models\SearchNews;
 use yii\behaviors\TimestampBehavior;
-use yii\db\BaseActiveRecord;
+use yii\db\Expression;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -43,14 +44,6 @@ class NewsController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
-            'timestamp'=>[
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['inputtime','updatetime'],
-                    BaseActiveRecord::EVENT_BEFORE_UPDATE => 'updatetime'
-                ],
-                'value' => time()
-            ]
         ];
     }
 
@@ -89,13 +82,14 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        $model->inputtime=time();
+        $fmodel = new Upload();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->news_id]);
         } else {
             $model->status=1;
             return $this->render('create', [
                 'model' => $model,
+                'fmodel' => $fmodel,
                 'catRe' => $this->findCateData(),
             ]);
         }
@@ -110,13 +104,14 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        $fmodel = new Upload();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->news_id]);
         } else {
 
             return $this->render('update', [
                 'model' => $model,
+                'fmodel' => $fmodel,
                 'catRe' => $this->findCateData(),
             ]);
         }
@@ -163,4 +158,5 @@ class NewsController extends Controller
         }
         return $catRe;
     }
+
 }

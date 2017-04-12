@@ -12,6 +12,9 @@ $config = [
         'admin' => [
             'class' => 'app\modules\admin\Module',
         ],
+        'home' => [
+            'class' => 'app\modules\home\Module',
+        ],
         'redactor' => [
             'class' => 'yii\redactor\RedactorModule',
             'imageAllowExtensions'=>['jpg','png','gif']
@@ -56,9 +59,11 @@ $config = [
 
         'urlManager' => [
             'enablePrettyUrl' => true,
+//            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
                 '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'home/user'],
             ],
             'suffix' => '.html',
         ],
@@ -78,7 +83,7 @@ if (YII_ENV_DEV) {
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['10.10.12.232', '::1'],
     ];
 
     $config['bootstrap'][] = 'gii';
