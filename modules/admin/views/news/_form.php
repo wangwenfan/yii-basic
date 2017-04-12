@@ -7,7 +7,7 @@ use ijackua\lepture\MarkdowneditorAssets;
 /* @var $this yii\web\View */
 /* @var $model app\models\News */
 /* @var $form yii\widgets\ActiveForm */
-MarkdowneditorAssets::register($this);
+//MarkdowneditorAssets::register($this);
 ?>
 <div class="row">
     <div class="col-lg-8">
@@ -23,14 +23,14 @@ MarkdowneditorAssets::register($this);
 
             <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
 
-<!--            --><?//= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
-//                'clientOptions' => [
-//                    'imageManagerJson' => ['/redactor/upload/image-json'],
-//                    'lang' => 'zh_cn',
-//                    'minHeight' => '300px',
-//                ]
-//            ]) ?>
-            <?= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
+            <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
+                'clientOptions' => [
+                    'imageManagerJson' => ['/redactor/upload/image-json'],
+                    'lang' => 'zh_cn',
+                    'minHeight' => '300px',
+                ]
+            ]) ?>
+<!--            --><?//= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
 
             <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用'])?>
 

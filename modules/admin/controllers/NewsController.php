@@ -45,11 +45,8 @@ class NewsController extends Controller
             ],
             'timestamp'=>[
                 'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    BaseActiveRecord::EVENT_BEFORE_INSERT => ['inputtime','updatetime'],
-                    BaseActiveRecord::EVENT_BEFORE_UPDATE => 'updatetime'
-                ],
-                'value' => time()
+                'createdAtAttribute' => 'inputtime',
+                'updatedAtAttribute' => 'updatetime',
             ]
         ];
     }
