@@ -20,10 +20,9 @@ MarkdowneditorAssets::register($this);
                     'method'=>'post',
                     'options'=>['class'=>'form-horizontal']
                 ]); ?>
-
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'catid')->dropDownList($catRe, ['prompt'=>'请选择','style'=>'width:200px']) ?>
-            <?= $form->field($tnModel,'tag_id[]')->checkboxList($tagRe)->label('文章标签') ?>
+            <?= $form->field($tnModel,'tag_id[]')->checkboxList($tagRe,['value'=>$taglist])->label('文章标签') ?>
             <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
             <?=Html::activeHiddenInput($model,'thumb',['class'=>'inputThumb'])?>
             <?=$form->field($fmodel, 'file[]')->widget(FileInput::classname(), [
@@ -67,13 +66,10 @@ MarkdowneditorAssets::register($this);
                 ]
             ]) ?>
 <!--            --><?//= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
-
             <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用'])?>
-
             <div class="form-group">
                 <?= Html::submitButton('提交', ['class' => 'btn btn-success']) ?>
             </div>
-
             <?php ActiveForm::end(); ?>
 
         </div>
