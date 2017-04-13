@@ -13,4 +13,16 @@ class UserController extends ActiveController
 {
     public $modelClass = 'app\models\News';
 
+
+    public function behaviors()
+    {
+        $behaviors = parent::behaviors();
+        $behaviors['contentNegotiator']['formats']['application/json'] = 'json';
+        $behaviors['contentNegotiator']['formats']['application/xml'] = 'json';
+        return $behaviors;
+    }
+    public function actionCreate1()
+    {
+
+    }
 }

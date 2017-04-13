@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'yii\\swiftmailer\\' => array($vendorDir . '/yiisoft/yii2-swiftmailer'),
+    'yii\\redis\\' => array($vendorDir . '/yiisoft/yii2-redis'),
     'yii\\redactor\\' => array($vendorDir . '/yiidoc/yii2-redactor'),
     'yii\\gii\\' => array($vendorDir . '/yiisoft/yii2-gii'),
     'yii\\faker\\' => array($vendorDir . '/yiisoft/yii2-faker'),
@@ -38,6 +39,7 @@ return array(
     'kartik\\alert\\' => array($vendorDir . '/kartik-v/yii2-widget-alert'),
     'kartik\\affix\\' => array($vendorDir . '/kartik-v/yii2-widget-affix'),
     'ijackua\\lepture\\' => array($vendorDir . '/ijackua/yii2-lepture-markdown-editor-widget'),
+    'crazyfd\\qiniu\\' => array($vendorDir . '/crazyfd/yii2-qiniu'),
     'cebe\\markdown\\' => array($vendorDir . '/cebe/markdown'),
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),

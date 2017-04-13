@@ -23,22 +23,16 @@ MarkdowneditorAssets::register($this);
 
             <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
             <?= $form->field($model, 'catid')->dropDownList($catRe, ['prompt'=>'请选择','style'=>'width:200px']) ?>
-
+            <?= $form->field($tnModel,'tag_id[]')->checkboxList($tagRe)->label('文章标签') ?>
             <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
-
-<!--            --><?//= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
-//                'clientOptions' => [
-//                    'imageManagerJson' => ['/redactor/upload/image-json'],
-//                    'lang' => 'zh_cn',
-//                    'minHeight' => '300px',
-//                ]
-//            ]) ?>
             <?=Html::activeHiddenInput($model,'thumb',['class'=>'inputThumb'])?>
-            <?=$form->field($fmodel, 'file')->widget(FileInput::classname(), [
+            <?=$form->field($fmodel, 'file[]')->widget(FileInput::classname(), [
                 'options' => ['multiple' => true],
                 'pluginOptions' => [
                     // 需要预览的文件格式
                     'previewFileType' => 'image',
+                    'initialPreview' => [$model->thumb],
+                    'initialPreviewConfig' => ['width' => '50px','height'=>'50px'],
                     // 是否展示预览图
                     'initialPreviewAsData' => true,
                     // 异步上传的接口地址设置
@@ -48,6 +42,8 @@ MarkdowneditorAssets::register($this);
                     'minFileCount' => 1,
                     // 最多上传的文件个数限制
                     'maxFileCount' => 2,
+                    // 展示图片区域是否可点击选择多文件
+                    'browseOnZoneClick' => true,
                  ],
                  //事件行为
                 'pluginEvents'  => [
@@ -63,7 +59,14 @@ MarkdowneditorAssets::register($this);
                 ]
             ]); ?>
 
-            <?= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
+            <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
+                'clientOptions' => [
+                    'imageManagerJson' => ['/redactor/upload/image-json'],
+                    'lang' => 'zh_cn',
+                    'minHeight' => '300px',
+                ]
+            ]) ?>
+<!--            --><?//= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
 
             <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用'])?>
 

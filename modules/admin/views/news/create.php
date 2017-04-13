@@ -17,6 +17,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'fmodel'=> $fmodel,
         'catRe' => $catRe,
+        'tnModel' => $tnModel,
+        'tagRe' => $tagRe
     ]) ?>
 </div>
 </div>
