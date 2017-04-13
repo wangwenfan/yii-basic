@@ -18,7 +18,10 @@ $this->params['breadcrumbs'][] = '修改';
     <?= $this->render('_form', [
         'model' => $model,
         'fmodel' => $fmodel,
-        'catRe' => $catRe
+        'catRe' => $catRe,
+        'tnModel' => $tnModel,
+        'tagRe' => $tagRe,
+        'taglist' =>$taglist
     ]) ?>
 
 </div>

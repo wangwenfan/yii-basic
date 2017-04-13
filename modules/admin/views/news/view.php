@@ -32,7 +32,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'title',
                     'description',
-                    'content:ntext',
+                    [
+                        'label' => '内容',
+                        'value' => $model->content,
+                        'format'=>'html'
+                    ],
                     'inputtime:datetime',
                     [
                         'label' => '状态',

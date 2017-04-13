@@ -40,6 +40,27 @@ CREATE TABLE `sw_news` (
   CONSTRAINT `sw_news_cate` FOREIGN KEY (`catid`) REFERENCES `sw_cate` (`catid`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
+#标签表
+CREATE TABLE `sw_tag` (
+  `tag_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '标签ID',
+  `tagname` varchar(30) NOT NULL COMMENT '标签名',
+  `description` varchar(200) NOT NULL COMMENT '描述',
+  `inputtime` int(11) NOT NULL,
+  `updatetime` int(11) NOT NULL,
+  PRIMARY KEY (`tag_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#标签关联表
+CREATE TABLE `sw_tag_news` (
+  `news_id` int(11) NOT NULL COMMENT '文章ID',
+  `tag_id` int(11) NOT NULL COMMENT '标签ID',
+  `inputtime` int(11) NOT NULL COMMENT '添加时间',
+  KEY `news_id` (`news_id`),
+  KEY `tag_id` (`tag_id`),
+  CONSTRAINT `newstagid` FOREIGN KEY (`news_id`) REFERENCES `sw_news` (`news_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `tag_news` FOREIGN KEY (`tag_id`) REFERENCES `sw_tag` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 
 
 ##### alter table `sw_news` add constraint `sw_news_cate` foreign key (`catid`) references `sw_cate`(`catid`) on delete cascade;#外键

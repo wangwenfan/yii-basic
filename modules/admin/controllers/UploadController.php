@@ -8,9 +8,9 @@
 
 namespace app\modules\admin\controllers;
 use app\models\Upload;
+use crazyfd\qiniu\Qiniu;
 use yii\helpers\Json;
 use yii\web\Controller;
-use yii\web\UploadedFile;
 
 class UploadController extends Controller
 {
@@ -18,29 +18,18 @@ class UploadController extends Controller
     {
         $model = new Upload();
         if(\Yii::$app->request->isPost){
-            $model->file= UploadedFile::getInstance($model,'file');
-            $dir = \Yii::getAlias("@webroot").'/uploads/image/'.date('Ymd');
-            if(!is_dir($dir)){
-                mkdir($dir);
-            }
-            if($model->validate()){
-                //文件名
-                $fileName = date("HiiHsHis").$model->file->baseName . "." . $model->file->extension;
-                $dir = $dir."/". $fileName;
-                $model->file->saveAs($dir);
-                $uploadSuccessPath = "/uploads/image/".date("Ymd")."/".$fileName;
-                $p1[0] = $uploadSuccessPath;
+            $info=$model->uploadImageFile();
+            if($info['state']){
                 echo Json::encode([
-                    'imageUrl'    => $uploadSuccessPath,
-                    'error'   => ''		//上传的error字段，如果没有错误就返回空字符串，否则返回错误信息，客户端会自动判定该字段来认定是否有错
+                    'imageUrl'    => $info['info'][0],
+                    'error'   => ''	//上传的error字段，如果没有错误就返回空字符串，否则返回错误信息，客户端会自动判定该字段来认定是否有错
                 ]);
             }else{
                 echo Json::encode([
                     'imageUrl'    => '',
-                    'error'   => '文件上传失败'
+                    'error'   => $info['info']['file'][0]
                 ]);
             }
-
         }
     }
 

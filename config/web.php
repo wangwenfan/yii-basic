@@ -21,6 +21,12 @@ $config = [
         ],
     ],
     'components' => [
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'port' => 6379,
+            'database' => 0,
+        ],
         'assetManager' => [
             'appendTimestamp' => true, //assets依赖时间戳参数
         ],
@@ -58,14 +64,20 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
 
         'urlManager' => [
-            'enablePrettyUrl' => true,
-//            'enableStrictParsing' => true,
-            'showScriptName' => false,
+            'class' => 'yii\web\UrlManager',
+            'enablePrettyUrl' => true, //是否启用美化
+            'enableStrictParsing' => false, //是否启用严格解析
+            'showScriptName' => false,//是否保留index.php
             'rules' => [
-                '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'home/user'],
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'news'=>'home/user',
+                    ],
+                    'pluralize' => false, //取消复数
+                ],
             ],
-            'suffix' => '.html',
+            'suffix' => '.html',//url后缀
         ],
         'session' => [
             'class' => 'yii\web\DbSession',

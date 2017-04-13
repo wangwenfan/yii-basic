@@ -18,6 +18,7 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         'y' => 
         array (
             'yii\\swiftmailer\\' => 16,
+            'yii\\redis\\' => 10,
             'yii\\redactor\\' => 13,
             'yii\\gii\\' => 8,
             'yii\\faker\\' => 10,
@@ -61,6 +62,7 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         ),
         'c' => 
         array (
+            'crazyfd\\qiniu\\' => 14,
             'cebe\\markdown\\' => 14,
         ),
         'W' => 
@@ -109,6 +111,10 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer',
+        ),
+        'yii\\redis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yiisoft/yii2-redis',
         ),
         'yii\\redactor\\' => 
         array (
@@ -235,6 +241,10 @@ class ComposerStaticInit405ebfd6c038d95ad5fafeca98116f79
         'ijackua\\lepture\\' => 
         array (
             0 => __DIR__ . '/..' . '/ijackua/yii2-lepture-markdown-editor-widget',
+        ),
+        'crazyfd\\qiniu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/crazyfd/yii2-qiniu',
         ),
         'cebe\\markdown\\' => 
         array (

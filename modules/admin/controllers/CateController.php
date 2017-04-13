@@ -44,13 +44,6 @@ class CateController extends Controller
                 ],
 
             ],
-            'timestamp'=>[
-                'class' => TimestampBehavior::className(),
-                'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['inputtime'],
-                ],
-                'value' => time()
-            ]
 
         ];
     }

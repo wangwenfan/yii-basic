@@ -85,7 +85,7 @@ class News extends \yii\db\ActiveRecord
 
     public function findCateName()
     {
-        return Cate::find()->where('catid=:catid',['catid'=>$this->catid])->one();
 
+        return Cate::find('catid=:catid',['catid'=>$this->catid])->one();
     }
 }

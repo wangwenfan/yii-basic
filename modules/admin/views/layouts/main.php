@@ -85,6 +85,9 @@ AppAsset::addJs($this,'admin/js/plugins/morris/raphael.min.js');
                         <li>
                             <a href="<?=Url::to(['news/index'])?>">文章列表</a>
                         </li>
+                        <li>
+                            <a href="<?=Url::to(['tag/index'])?>">标签列表</a>
+                        </li>
                     </ul>
                 </li>
                 <li>
