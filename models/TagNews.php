@@ -65,6 +65,10 @@ class TagNews extends \yii\db\ActiveRecord
         return $this->hasOne(Tag::className(), ['tag_id' => 'tag_id']);
     }
 
+    /**根据文章id查询标签
+     * @param $news_id
+     * @return static[]
+     */
     public function getTagList($news_id)
     {
         return self::findAll(['news_id'=>$news_id]);

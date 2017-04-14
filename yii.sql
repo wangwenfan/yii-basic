@@ -2,7 +2,7 @@
 CREATE TABLE `sw_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
-  `password` varchar(32) NOT NULL,
+  `password` char(60) NOT NULL,
   `email` varchar(50) DEFAULT NULL,
   `tel` int(11) DEFAULT NULL,
   `inputtime` datetime DEFAULT NULL,
@@ -64,3 +64,4 @@ CREATE TABLE `sw_tag_news` (
 
 
 ##### alter table `sw_news` add constraint `sw_news_cate` foreign key (`catid`) references `sw_cate`(`catid`) on delete cascade;#外键
+# $13$NDIUSAJmTSDZkralZIq/1uSlNSwzQzmeAbwD0vCLbh3BDO6ktFffG

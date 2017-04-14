@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -34,7 +35,7 @@ class News extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
-           [
+            [
                 'class' => TimestampBehavior::className(),
                 'createdAtAttribute' => 'inputtime',
                 'updatedAtAttribute' => 'updatetime',
@@ -83,9 +84,67 @@ class News extends \yii\db\ActiveRecord
         return $this->hasOne(Cate::className(), ['catid' => 'catid']);
     }
 
-    public function findCateName()
+    public function getTag()
     {
+        return $this->hasMany(TagNews::className(),['news_id'=>'news_id']);
+    }
 
-        return Cate::find('catid=:catid',['catid'=>$this->catid])->one();
+    /**写入文章数据
+     * @return bool
+     */
+    public function insertData()
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            $this->save();
+            $news_id = Yii::$app->db->getLastInsertID();//文章id
+            $tag_idArray = Yii::$app->request->post('TagNews')['tag_id'];
+            $data = [];
+            foreach ($tag_idArray as $tag_id) {
+                $data[] = [
+                    'tag_id' => $tag_id,
+                    'news_id' => $news_id,
+                    'inputtime' => time()
+                ];
+            }
+            Yii::$app->db->createCommand()
+                ->batchInsert(TagNews::tableName(), ['tag_id', 'news_id', 'inputtime'], $data)
+                ->execute();
+            $transaction->commit();
+            return true;
+        } catch (Exception $e) {
+            $transaction->rollBack();
+            return false;
+
+        }
+    }
+
+    /**修改文章
+     * @return bool
+     */
+    public function updateData()
+    {
+        $tag_idArray = Yii::$app->request->post('TagNews')['tag_id'];
+        $transaction = Yii::$app->db->beginTransaction();
+        try{
+            $this->save();
+            $data = [];
+            TagNews::deleteAll('news_id=:news_id',[':news_id'=>$this->news_id]);
+            foreach ($tag_idArray as $tag_id) {
+                $data[] = [
+                    'tag_id' => $tag_id,
+                    'news_id' => $this->news_id,
+                    'inputtime' => time()
+                ];
+            }
+            Yii::$app->db->createCommand()
+                ->batchInsert(TagNews::tableName(), ['tag_id', 'news_id', 'inputtime'], $data)
+                ->execute();
+            $transaction->commit();
+            return true;
+        }catch (\yii\db\Exception $e){
+            $transaction->rollBack();
+            return false;
+        }
     }
 }

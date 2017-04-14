@@ -6,14 +6,11 @@ use app\models\Cate;
 use app\models\Tag;
 use app\models\TagNews;
 use app\models\Upload;
-use Codeception\Lib\Driver\Db;
 use Yii;
 use app\models\News;
 use app\models\SearchNews;
-use yii\base\Exception;
-use yii\behaviors\TimestampBehavior;
-use yii\db\Expression;
 use yii\filters\AccessControl;
+use yii\helpers\Json;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -72,7 +69,6 @@ class NewsController extends Controller
      */
     public function actionView($id)
     {
-        $mdoel = $this->findModel($id);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -89,27 +85,11 @@ class NewsController extends Controller
         $fmodel = new Upload();
         $tnModel = new TagNews();
         if ($model->load(Yii::$app->request->post())) {
-            $transaction = Yii::$app->db->beginTransaction();
-            try {
-                $model->save();
-                $news_id = Yii::$app->db->getLastInsertID();//文章id
-                $tag_idArray = Yii::$app->request->post('TagNews')['tag_id'];
-                foreach ($tag_idArray as $tag_id) {
-                    $data[]=[
-                        'tag_id'=>$tag_id,
-                        'news_id'=>$news_id,
-                        'inputtime'=>time()
-                    ];
-                }
-                Yii::$app->db->createCommand()
-                    ->batchInsert(TagNews::tableName(),['tag_id','news_id','inpnttime'],
-                        $data)
-                    ->execute();
-                $transaction->commit();
+            if($model->insertData()){
                 return $this->redirect(['view', 'id' => $model->news_id]);
-            } catch (Exception $e) {
-                $transaction->rollBack();
-                throw $e;
+            }else{
+                Yii::$app->getSession()->setFlash('error', '添加失败');
+                return $this->refresh();
             }
         } else {
             $model->status = 1;
@@ -135,18 +115,26 @@ class NewsController extends Controller
         $model = $this->findModel($id);
         $fmodel = new Upload();
         $tnModel = new TagNews();
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->news_id]);
+        if ($model->load(Yii::$app->request->post())) {
+            if($model->updateData()){
+                return $this->redirect(['view', 'id' => $model->news_id]);
+            }else{
+                Yii::$app->getSession()->setFlash('error', '修改失败');
+                return $this->refresh();
+            }
         } else {
             $tagRe = $this->findTagData();
             $taglist=$tnModel->getTagList($id);
+            foreach ($taglist as $tag){
+                $tag_id[]=$tag->tag_id;
+            }
             return $this->render('update', [
                 'model' => $model,
                 'fmodel' => $fmodel,
                 'catRe' => $this->findCateData(),
                 'tnModel' => $tnModel,
                 'tagRe' => $tagRe,
-                'taglist' =>$taglist
+                'taglist' =>$tag_id
             ]);
         }
     }
@@ -193,6 +181,9 @@ class NewsController extends Controller
         return $catRe;
     }
 
+    /**查询所有标签
+     * @return array
+     */
     protected function findTagData()
     {
         $t = Tag::find()->all();
@@ -200,8 +191,19 @@ class NewsController extends Controller
         foreach ($t as $v) {
             $tagRe[$v->tag_id] = $v->tagname;
         }
-
         return $tagRe;
+    }
+
+    public function actionDeleteall($id)
+    {
+        if(News::deleteAll('news_id in ('.$id.')')){
+            $data['state']=1;
+            $data['info']='删除成功';
+        }else{
+            $data['state']=0;
+            $data['info']='删除失败';
+        }
+        echo Json::encode($data);
     }
 
 }

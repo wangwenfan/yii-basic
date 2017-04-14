@@ -28,7 +28,7 @@ $config = [
             'database' => 0,
         ],
         'assetManager' => [
-            'appendTimestamp' => true, //assets依赖时间戳参数
+            'appendTimestamp' => true, //assets依赖时间戳参数作版本号
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

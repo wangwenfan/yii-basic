@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'news_id',
                     [
                         'label' => '栏目名',
-                        'value' => $model->findCateName()->catname
+                        'value' => $model->cat->catname
                     ],
                     'title',
                     'description',

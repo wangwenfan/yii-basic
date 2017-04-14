@@ -17,21 +17,7 @@ use yii\widgets\ActiveForm;
             'data-pjax' => 1
         ],
     ]); ?>
-
-    <?= $form->field($model, 'news_id') ?>
-
-    <?= $form->field($model, 'catid') ?>
-
     <?= $form->field($model, 'title') ?>
-
-    <?= $form->field($model, 'description') ?>
-
-    <?= $form->field($model, 'content') ?>
-
-    <?php // echo $form->field($model, 'inputtime') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
