@@ -31,6 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
                         'value' => $model->cat->catname
                     ],
                     'title',
+                    [
+                        'label' => '标签',
+                        'value' => function($model){
+                            if($tag = $model->tags) return join(',',array_column($tag,'tagname'));
+                        }
+                    ],
                     'description',
                     [
                         'label' => '内容',

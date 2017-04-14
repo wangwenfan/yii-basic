@@ -147,4 +147,14 @@ class News extends \yii\db\ActiveRecord
             return false;
         }
     }
+
+    /**获取关联标签
+     * @return $this
+     */
+    public function getTags()
+    {
+        return $this->hasMany(Tag::className(), ['tag_id' => 'tag_id'])
+            ->viaTable(TagNews::tableName(),['news_id'=>'news_id'])->asArray();
+    }
 }
+

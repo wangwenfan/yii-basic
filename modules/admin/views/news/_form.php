@@ -58,14 +58,17 @@ MarkdowneditorAssets::register($this);
                 ]
             ]); ?>
 
-            <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
+       <?= $form->field($model, 'content')->widget(\yii\redactor\widgets\Redactor::className(), [
                 'clientOptions' => [
                     'imageManagerJson' => ['/redactor/upload/image-json'],
                     'lang' => 'zh_cn',
                     'minHeight' => '300px',
                 ]
             ]) ?>
-<!--            --><?//= Markdowneditor::widget(['model' => $model, 'attribute' => 'content']) ?>
+
+<!--            --><?//= $form->field($model,'content')->widget('yidashi\markdown\Markdown',['language' => 'zh']); ?>
+
+
             <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用'])?>
             <div class="form-group">
                 <?= Html::submitButton('提交', ['class' => 'btn btn-success']) ?>

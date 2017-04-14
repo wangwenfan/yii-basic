@@ -58,6 +58,13 @@ $this->registerJs($indexJs);
                 }
             ],
             'title',
+            [
+                'label'=>'标签',
+                'attribute' => 'news_id',
+                'content' => function($dataProvider){
+                    if($tag = $dataProvider->tags) return join(',',array_column($tag,'tagname'));
+                }
+            ],
             'description',
             [
                 'label'=>'添加时间',

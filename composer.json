@@ -22,7 +22,8 @@
         "ijackua/yii2-lepture-markdown-editor-widget": "dev-master",
         "kartik-v/yii2-widget-fileinput": "@dev",
         "crazyfd/yii2-qiniu": "dev-master",
-        "yiisoft/yii2-redis": "^2.0@dev"
+        "yiisoft/yii2-redis": "^2.0@dev",
+        "yidashi/yii2-bootstrap-markdown": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

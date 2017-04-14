@@ -4438,5 +4438,34 @@
             "session",
             "yii2"
         ]
+    },
+    {
+        "name": "yidashi/yii2-bootstrap-markdown",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yidashi/yii2-bootstrap-markdown.git",
+            "reference": "9df58be2387f77afe6f7ea508b0a992bf8093289"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/yidashi/yii2-bootstrap-markdown/9df58be2387f77afe6f7ea508b0a992bf8093289.zip",
+            "reference": "9df58be2387f77afe6f7ea508b0a992bf8093289",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.4.0"
+        },
+        "time": "2016-11-25T02:32:25+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yidashi\\markdown\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "description": "yii2-bootstrap-markdown"
     }
 ]
