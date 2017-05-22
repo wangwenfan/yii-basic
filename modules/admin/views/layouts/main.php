@@ -18,6 +18,7 @@ AppAsset::addCss($this,'admin/css/sb-admin.css');
 AppAsset::addCss($this,'admin/css/plugins/morris.css');
 AppAsset::addCss($this,'admin/font-awesome/css/font-awesome.min.css');
 AppAsset::addJs($this,'admin/js/plugins/morris/raphael.min.js');
+AppAsset::addJs($this,'admin/js/index.js');
 ?>
 <?php $this->beginPage();?>
 <!doctype html>
@@ -92,6 +93,9 @@ AppAsset::addJs($this,'admin/js/plugins/morris/raphael.min.js');
                 </li>
                 <li>
                     <a href="javascript:;"><i class="fa fa-fw fa-arrows-v"></i> 评论</a>
+                </li>
+                <li>
+                    <a href="<?=Url::to(['setting/index']) ?>"><i class="fa fa-fw fa-arrows-v"></i> 首页设置</a>
                 </li>
             </ul>
         </div>
