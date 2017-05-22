@@ -78,20 +78,20 @@ AppAsset::addJs($this,'admin/js/plugins/morris/raphael.min.js');
                 </li>
                 <li class="active">
                     <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-file"></i> 内容管理 <i class="fa fa-fw fa-caret-down"></i></a>
-                    <ul id="demo" class="collapse">
+                    <ul id="demo" class="collapse in">
                         <li class="active">
-                            <a href="<?=Url::to(['cate/index'])?>">栏目列表</a>
+                            <a href="<?=Url::to(['cate/index'])?>">栏目</a>
                         </li>
                         <li>
-                            <a href="<?=Url::to(['news/index'])?>">文章列表</a>
+                            <a href="<?=Url::to(['news/index'])?>">文章</a>
                         </li>
                         <li>
-                            <a href="<?=Url::to(['tag/index'])?>">标签列表</a>
+                            <a href="<?=Url::to(['tag/index'])?>">标签</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href=""><i class="fa fa-fw fa-arrows-v"></i> 评论</a>
+                    <a href="javascript:;"><i class="fa fa-fw fa-arrows-v"></i> 评论</a>
                 </li>
             </ul>
         </div>

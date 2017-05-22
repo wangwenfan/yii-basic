@@ -65,7 +65,6 @@ $this->registerJs($indexJs);
                     if($tag = $dataProvider->tags) return join(',',array_column($tag,'tagname'));
                 }
             ],
-            'description',
             [
                 'label'=>'添加时间',
                 'attribute' => 'inputtime',
@@ -81,7 +80,11 @@ $this->registerJs($indexJs);
                 }
             ],
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'header' => '操作',
+                'headerOptions' => ['width' => '128', 'class' => 'padding-left-5px',],
+            ],
         ],
     ]); ?>
     <?php Pjax::end(); ?>
