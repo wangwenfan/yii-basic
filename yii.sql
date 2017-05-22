@@ -61,6 +61,18 @@ CREATE TABLE `sw_tag_news` (
   CONSTRAINT `tag_news` FOREIGN KEY (`tag_id`) REFERENCES `sw_tag` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+#网站设置表
+CREATE TABLE `sw_setting` (
+  `siteid` tinyint(2) NOT NULL COMMENT '站点ID',
+  `sitename` varchar(50) NOT NULL COMMENT '站点名称',
+  `siteremark` varchar(100) NOT NULL COMMENT '站点描述',
+  `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态',
+  `sitelink` varchar(50) NOT NULL COMMENT '站点地址',
+  `logo` varchar(100) NOT NULL COMMENT 'logo',
+  `menus` varchar(200) NOT NULL COMMENT '站点菜单',
+  `updatetime` int(11) NOT NULL COMMENT '更新时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 
 
 ##### alter table `sw_news` add constraint `sw_news_cate` foreign key (`catid`) references `sw_cate`(`catid`) on delete cascade;#外键
