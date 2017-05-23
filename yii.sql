@@ -69,9 +69,12 @@ CREATE TABLE `sw_setting` (
   `sitelink` varchar(50) NOT NULL COMMENT '站点地址',
   `logo` varchar(100) NOT NULL COMMENT 'logo',
   `menus` varchar(200) NOT NULL COMMENT '站点菜单',
+  `inputtime` int(11) DEFAULT NULL,
   `updatetime` int(11) NOT NULL COMMENT '更新时间',
+  `backgroundurls` varchar(255) DEFAULT NULL COMMENT '背景图',
   PRIMARY KEY (`siteid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
 
 
 
