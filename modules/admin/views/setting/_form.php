@@ -20,11 +20,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'sitename')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'siteremark')->textInput(['maxlength' => true]) ?>
-<<<<<<< HEAD
-    <? if($model->status == '') $model->status = 1; ?>
-    <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用']) ?>
-=======
-    <? if($model->status === null){ $model->status=1;} ?>
+    <? if($model->status == null){ $model->status=1;} ?>
     <?= $form->field($model, 'status')->radioList(['1'=>'启用','0'=>'禁用']) ?>
 
     <div class="input-group ">
@@ -33,7 +29,6 @@ use yii\widgets\ActiveForm;
 				<button class="btn btn-default" type="button" onclick="showImageDialog(this);">选择图片</button>
         </span>
     </div>
->>>>>>> 33e7d9f03bf7d168dffef999f750d548c8a1e699
 
     <?= $form->field($model, 'sitelink')->textInput(['maxlength' => true]) ?>
     <?=Html::activeHiddenInput($model,'logo',['class'=>'inputThumb'])?>

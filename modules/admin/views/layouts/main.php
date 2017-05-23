@@ -57,7 +57,7 @@ AppAsset::addJs($this,'admin/js/index.js');
         if( Yii::$app->getSession()->hasFlash('success') ) {
             echo Alert::widget([
                 'options' => [
-                    'class' => 'alert-success ', //这里是提示框的class
+                    'class' => 'alert-success ', //这里是提示框的
                 ],
                 'body' => Yii::$app->getSession()->getFlash('success'), //消息体
             ]);

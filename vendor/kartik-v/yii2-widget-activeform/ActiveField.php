@@ -670,6 +670,7 @@ class ActiveField extends YiiActiveField
             $this->buildTemplate();
             $this->staticInput();
         } else {
+            
             $this->initPlaceholder($this->inputOptions);
             $this->initDisability($this->inputOptions);
             $this->buildTemplate();

@@ -67,6 +67,7 @@ class SettingController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->siteid]);
         } else {
+            // var_dump($model->getErrors());die;
             return $this->render('create', [
                 'model' => $model,
             ]);

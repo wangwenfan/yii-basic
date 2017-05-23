@@ -46,7 +46,7 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['sitename', 'siteremark', 'sitelink', 'logo', 'menus'], 'required'],
+            [['sitename', 'siteremark', 'sitelink', 'menus'], 'required'],
             [['siteid', 'status', 'updatetime'], 'integer'],
             [['sitename', 'sitelink'], 'string', 'max' => 50],
             [['siteremark', 'logo'], 'string', 'max' => 100],
