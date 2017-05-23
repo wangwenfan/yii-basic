@@ -9,7 +9,9 @@
 namespace app\modules\admin\controllers;
 use app\models\Upload;
 use crazyfd\qiniu\Qiniu;
+use kartik\file\FileInput;
 use yii\helpers\Json;
+use yii\helpers\Url;
 use yii\web\Controller;
 
 class UploadController extends Controller

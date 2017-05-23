@@ -115,6 +115,44 @@ AppAsset::addJs($this,'admin/js/index.js');
         <!--面包屑 end-->
     <?=$content; ?>
 </div>
+    <div class="upload-top">
+        <div class="upload-back"></div>
+        <div class="uploadImg">
+           <div class="img-nav">
+               <button class="btn btn-primary">浏览图片</button>
+               <button class="btn btn-primary">网络图片</button>
+           </div>
+            <? echo \kartik\file\FileInput::widget([
+                'model' => new \app\models\Upload(),
+                'attribute' => 'file[]',
+                'options' => ['multiple' => true],
+                'pluginOptions' => [
+                    'uploadUrl' => Url::toRoute(['upload/uplodfile']),
+                    // 最少上传的文件个数限制
+                    'minFileCount' => 1,
+                    // 最多上传的文件个数限制
+                    'maxFileCount' => 1,
+                    'initialPreviewConfig' => ['width' => '20px','height'=>'20px'],
+                ],
+                //事件行为
+                'pluginEvents'  => [
+                    'fileuploaded'  =>
+                        "function (object,data){
+                             $(\".uploadimgs\").val(data.response.imageUrl);  
+                            }",
+                    //错误的冗余机制
+                    'error' => "function (){
+                            alert('图片上传失败');
+                        }"
+                ]
+            ]);?>
+            <div class="img-footnav">
+                <input type="hidden" class="uploadimgs" value="">
+                <button class="btn btn-primary isnow">确定使用</button>
+                <button class="btn btn-default inclose">取消</button>
+            </div>
+        </div>
+    </div>
 <!-- /#wrapper -->
 
 <?php $this->endBody(); ?>
