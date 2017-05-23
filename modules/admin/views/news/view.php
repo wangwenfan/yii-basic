@@ -41,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'label' => '内容',
                         'value' => $model->content,
-                        'format'=>'html'
+                        'format'=>'html',
                     ],
                     'inputtime:datetime',
                     [

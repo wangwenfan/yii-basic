@@ -1,0 +1,33 @@
+.upload-top{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    display: none;
+}
+.upload-back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #000000;
+    opacity: 0.2;
+
+    z-index: 9;
+}
+.uploadImg{
+    position: relative;
+    top: 20%;
+    left: 30%;
+    width: 50%;
+    z-index: 999;
+    background: #fff;
+}
+.isnow{
+    margin-left: 40%;
+    margin-right: 10px;
+}
+.img-nav,.img-footnav,.file-input.file-input-ajax-new{
+    padding: 10px;
+}

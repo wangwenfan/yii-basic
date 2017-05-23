@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%setting}}".
@@ -25,6 +26,19 @@ class Setting extends \yii\db\ActiveRecord
     {
         return '{{%setting}}';
     }
+    /**自动写入时间
+     * @return array
+     */
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'createdAtAttribute' => 'inputtime',
+                'updatedAtAttribute' => 'updatetime',
+            ]
+        ];
+    }
 
     /**
      * @inheritdoc
@@ -32,7 +46,7 @@ class Setting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['siteid', 'sitename', 'siteremark', 'sitelink', 'logo', 'menus', 'updatetime'], 'required'],
+            [['sitename', 'siteremark', 'sitelink', 'logo', 'menus'], 'required'],
             [['siteid', 'status', 'updatetime'], 'integer'],
             [['sitename', 'sitelink'], 'string', 'max' => 50],
             [['siteremark', 'logo'], 'string', 'max' => 100],
@@ -54,6 +68,7 @@ class Setting extends \yii\db\ActiveRecord
             'logo' => 'Logo',
             'menus' => '菜单',
             'updatetime' => '更新时间',
+            'backgroundurls' =>'背景图'
         ];
     }
 }
