@@ -34,13 +34,18 @@ class Upload extends Model
             mkdir($dir);
         }
         if($this->validate()){
+            $model=new Attachment();
             foreach ($this->file as $key=>$image){
                 //文件名
-                $fileName = date("HiiHsHis").$image->baseName . "." . $image->extension;
+                $fileName = md5(date("HiiHsHis").$image->baseName) . "." . $image->extension;
                 $dir = $dir."/". $fileName;
                 $image->saveAs($dir);
                 $uploadSuccessPath = "/uploads/image/".date("Ymd")."/".$fileName;
                 $p1[$key] = $uploadSuccessPath;
+                $model->filename=$image->baseName;
+                $model->fileext=$image->extension;
+                $model->filepath=$uploadSuccessPath;
+                $model->save();
             }
             $data['state']=1;
             $data['info']=$p1;
@@ -49,7 +54,6 @@ class Upload extends Model
             $error=$this->getErrors();
             $data['state']=0;
             $data['info']=$error;
-
         }
     }
 

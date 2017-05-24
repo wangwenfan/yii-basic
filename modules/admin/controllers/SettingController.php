@@ -5,6 +5,7 @@ namespace app\modules\admin\controllers;
 use Yii;
 use app\models\Setting;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,19 @@ class SettingController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(), // 使用核心过滤器Access 对执行动作进行验证
+                'denyCallback' => function ($rule, $action) { //认证失败后回调函数
+                    $this->goHome();
+                },
+                'rules' => [ // 规则
+                    [
+                        'actions' => [],
+                        'allow' => true, // 只允许认证用户进行访问
+                        'roles' => ['@'], //?为游客 @为认证用户
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -63,7 +77,6 @@ class SettingController extends Controller
     public function actionCreate()
     {
         $model = new Setting();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->siteid]);
         } else {
@@ -83,7 +96,7 @@ class SettingController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+//        var_dump($_POST);die;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->siteid]);
         } else {

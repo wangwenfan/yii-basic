@@ -7,9 +7,11 @@
  */
 
 namespace app\modules\admin\controllers;
+use app\models\Attachment;
 use app\models\Upload;
 use crazyfd\qiniu\Qiniu;
 use kartik\file\FileInput;
+use yii\data\Pagination;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
@@ -33,6 +35,30 @@ class UploadController extends Controller
                 ]);
             }
         }
+    }
+    //获取历史附件
+    public function actionAttrfile()
+    {
+        $app=\Yii::$app;
+        $userid=$app->user->id;
+        $isimage=$app->request->post('isimage');
+        $query=Attachment::find(['userid'=>$userid,'isimage'=>$isimage])->select(['id','filename','filepath']);
+        $count=$query->count();
+        $page=$app->request->post('page') ? $app->request->post('page') : 0;
+        $pagination=new Pagination(['totalCount' => 8]);
+        $pagination->defaultPageSize=8;
+        $pagination->page=$page;
+        $articles = $query->offset($pagination->offset)
+            ->limit($pagination->limit)
+            ->asArray()
+            ->all();
+        if($articles){
+            $info['state']=1;
+            $info['data']=$articles;
+        }else{
+            $info['state']=0;
+        }
+        echo Json::encode($info);
     }
 
 }

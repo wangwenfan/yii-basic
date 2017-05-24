@@ -9,6 +9,7 @@
 /* @var $content string */
 
 use app\assets\AppAsset;
+use app\models\Upload;
 use yii\bootstrap\Alert;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -119,34 +120,37 @@ AppAsset::addJs($this,'admin/js/index.js');
         <div class="upload-back"></div>
         <div class="uploadImg">
            <div class="img-nav">
-               <button class="btn btn-primary">浏览图片</button>
-               <button class="btn btn-primary">网络图片</button>
+               <button class="btn btn-primary img-up ">上传图片</button>
+               <button class="btn btn-primary img-list">历史图库</button>
            </div>
             <? echo \kartik\file\FileInput::widget([
-                'model' => new \app\models\Upload(),
+                'model' => new Upload(),
                 'attribute' => 'file[]',
-                'options' => ['multiple' => true],
+                'options' => ['accept' => 'image/*'],
                 'pluginOptions' => [
-                    'uploadUrl' => Url::toRoute(['upload/uplodfile']),
-                    // 最少上传的文件个数限制
-                    'minFileCount' => 1,
-                    // 最多上传的文件个数限制
-                    'maxFileCount' => 1,
-                    'initialPreviewConfig' => ['width' => '20px','height'=>'20px'],
-                ],
+                'uploadUrl' => Url::toRoute(['upload/uplodfile']),
+                // 最多上传的文件个数限制
+                'maxFileCount' => 3,
+                'initialPreviewAsData '=>true,
+                'initialPreviewConfig' => ['width' => '100px'],
+                'maxFileSize' => 2000,
+                'browseOnZoneClick' => false,
+                'browseLabel' => '选择图片'
+            ],
                 //事件行为
                 'pluginEvents'  => [
-                    'fileuploaded'  =>
-                        "function (object,data){
+                'fileuploaded'  =>
+                    "function (object,data){
                              $(\".uploadimgs\").val(data.response.imageUrl);  
                             }",
-                    //错误的冗余机制
-                    'error' => "function (){
+                //错误的冗余机制
+                'error' => "function (){
                             alert('图片上传失败');
                         }"
-                ]
+            ]
             ]);?>
             <div class="img-footnav">
+                <a id="upload-href" style="display: none;" href="<?= Url::toRoute('upload/attrfile')?>"></a>
                 <input type="hidden" class="uploadimgs" value="">
                 <button class="btn btn-primary isnow">确定使用</button>
                 <button class="btn btn-default inclose">取消</button>

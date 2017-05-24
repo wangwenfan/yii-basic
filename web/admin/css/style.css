@@ -4,7 +4,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 99;
+    z-index: 999;
     display: none;
 }
 .upload-back{
@@ -13,7 +13,6 @@
     height: 100%;
     background-color: #000000;
     opacity: 0.2;
-
     z-index: 9;
 }
 .uploadImg{
@@ -30,4 +29,20 @@
 }
 .img-nav,.img-footnav,.file-input.file-input-ajax-new{
     padding: 10px;
+}
+.uploadimg-true{
+    position: absolute;
+    padding-left: 85px;
+}
+.upload-xz{
+    width: 50px;
+    position: relative;
+}
+.kv-file-content img{
+    width: 120px!important;
+    height: 100px!important;
+}
+.kv-file-content{height: auto!important;}
+.yii-img{
+    cursor: pointer;
 }

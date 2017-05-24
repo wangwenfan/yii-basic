@@ -60,7 +60,7 @@ CREATE TABLE `sw_tag_news` (
   CONSTRAINT `newstagid` FOREIGN KEY (`news_id`) REFERENCES `sw_news` (`news_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `tag_news` FOREIGN KEY (`tag_id`) REFERENCES `sw_tag` (`tag_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
+#站点设置
 CREATE TABLE `sw_setting` (
   `siteid` tinyint(2) NOT NULL AUTO_INCREMENT COMMENT '站点ID',
   `sitename` varchar(50) NOT NULL COMMENT '站点名称',
@@ -74,7 +74,19 @@ CREATE TABLE `sw_setting` (
   `backgroundurls` varchar(255) DEFAULT NULL COMMENT '背景图',
   PRIMARY KEY (`siteid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-
+#附件表
+CREATE TABLE `sw_attachment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '附件ID',
+  `filename` varchar(100) NOT NULL COMMENT '附件名称',
+  `filepath` varchar(200) NOT NULL COMMENT '附件地址',
+  `fileext` varchar(20) NOT NULL COMMENT '扩展名',
+  `isimage` tinyint(1) NOT NULL DEFAULT '1' COMMENT '是否为图片',
+  `isthumb` tinyint(1) NOT NULL DEFAULT '0' COMMENT '是否为缩略图',
+  `userid` int(11) NOT NULL DEFAULT '1' COMMENT '用户ID',
+  `inputtime` int(11) DEFAULT NULL,
+  `updatetime` int(11) NOT NULL COMMENT '更新时间',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 
 
