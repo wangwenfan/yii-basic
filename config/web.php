@@ -34,6 +34,9 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'lc0ssxNrn6EvweNOBY6ECHPkBxRakiAl',
             'enableCsrfValidation' => false, //关闭csrf验证
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -75,6 +78,7 @@ $config = [
                         'news'=>'home/user',
                     ],
                     'pluralize' => false, //取消复数
+
                 ],
             ],
             'suffix' => '.html',//url后缀
@@ -84,7 +88,6 @@ $config = [
             'db' => 'db',  // 数据库连接的应用组件ID
             'sessionTable' => 'sw_session', // session 数据表名，默认为'session'.
         ],
-
     ],
     'params' => $params,
 ];

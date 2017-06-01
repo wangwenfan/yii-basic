@@ -6,7 +6,7 @@ html{font-size:10px;font-family: "Microsoft YaHei"}
 @media screen and (min-width:720px) and (max-width:749px){html{font-size:22.5px}}
 @media screen and (min-width:750px) and (max-width:799px){html{font-size:23.5px}}
 @media screen and (min-width:800px){html{font-size:25px}}
-body{background: url("../images/timg.jpg") no-repeat;background-size: 100%;}
+body{background: url("../images/timg.jpg");background-size: 100%;}
 .headimg{width: 100px;height:100px;margin: 0 auto;}
 .headimg img{width: 100%;height: 100%;border-radius: 100px}
 .blog-center h4,.blog-center p{text-align: center;color: #fff;}

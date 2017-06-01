@@ -96,7 +96,6 @@ class SettingController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-//        var_dump($_POST);die;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->siteid]);
         } else {

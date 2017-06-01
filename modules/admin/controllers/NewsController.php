@@ -83,7 +83,6 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        $fmodel = new Upload();
         $tnModel = new TagNews();
         if ($model->load(Yii::$app->request->post())) {
             if($model->insertData()){
@@ -97,7 +96,6 @@ class NewsController extends Controller
             $tagRe = $this->findTagData();
             return $this->render('create', [
                 'model' => $model,
-                'fmodel' => $fmodel,
                 'catRe' => $this->findCateData(),
                 'tnModel' => $tnModel,
                 'tagRe' => $tagRe
@@ -114,7 +112,6 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $fmodel = new Upload();
         $tnModel = new TagNews();
         if ($model->load(Yii::$app->request->post())) {
             if($model->updateData()){
@@ -131,7 +128,6 @@ class NewsController extends Controller
             }
             return $this->render('update', [
                 'model' => $model,
-                'fmodel' => $fmodel,
                 'catRe' => $this->findCateData(),
                 'tnModel' => $tnModel,
                 'tagRe' => $tagRe,

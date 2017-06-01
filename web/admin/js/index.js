@@ -6,7 +6,11 @@
  * var textClassColor:图片选中颜色属性
  * var page: 分页页码
  */
-var uploadType,textClassColor='text-danger',page=0;
+var uploadType,indexPage,textClassColor='text-danger',page=0,self;
+var pages='';
+pages+='<ul class="pagination"><li class="prev yii-img"><span><a  onclick="showPages(\'last\')">«上一页</a></span></li>';
+pages+=' <li class="next yii-img"><a  onclick="showPages(\'next\')">下一页»</a></li>';
+pages+='</ul>';
 $(function () {
    var localUrl=window.location.href;//当前地址
     if($(".uploadimg-true").length > 0){
@@ -30,9 +34,11 @@ $(function () {
         uploadType=2;
         var imgstr='';
         var url=$("#upload-href").attr('href');
-        $.post(url,{isimage:1,page:page},function (re) {
-            if(re.state == 1){
-                $.each(re.data,function (n,i) {
+        $.get(url,{isimage:1,page:page},function (re) {
+            indexPage=re.indexPage;
+            var info=re.info;
+            if(info.state == 1){
+                $.each(info.data,function (n,i) {
                     imgstr+='<div class="file-preview-frame krajee-default yii-img">';
                     imgstr+='<div class="kv-file-content">';
                     imgstr+='<img src="'+i.filepath+'">';
@@ -47,17 +53,34 @@ $(function () {
                     imgstr+='</div>';
                     imgstr+='</div>';
                 });
+                if(indexPage > 0){
+                    $(".file-preview-status").html(pages);
+                }
                 $(".file-caption-main").css('display','none');
                 $(".file-preview-thumbnails").html(imgstr);
                 $(".file-drop-zone-title").hide();
             }
         },'json');
-
-
-
     });
 
 });
+
+function  showPages(pg) {
+    if(pg == 'next'){
+        if(page == indexPage){
+            alert('这是最后一页了');return false;
+        }
+        page=page+1;
+    }else if(pg == 'last') {
+        if(page == 0){
+            alert('没有上一页了');return false;
+        }
+        page=page-1;
+    }
+    $(".img-list").click();
+
+}
+
 //点击上传图片
 $(".img-up").on('click',function () {
     uploadType=1;
@@ -67,6 +90,7 @@ $(".img-up").on('click',function () {
 /*显示上传插件*/
 function showImageDialog(that) {
     uploadType=1;
+    self=that;
     $(".upload-top").css('display','block');
 }
 /*关闭上传插件*/
@@ -94,7 +118,6 @@ $(".isnow").on('click',function () {
             break;
     }
     $(".upload-top").css('display','none');
-    $(".select-img").parent().prev().val(urls)
+    $(self).parent().prev().val(urls)
     $(".fileinput-remove").click();
 });
-

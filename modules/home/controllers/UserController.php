@@ -8,7 +8,6 @@
 
 namespace app\modules\home\controllers;
 use yii\rest\ActiveController;
-use app\models\News;
 class UserController extends ActiveController
 {
     public $modelClass = 'app\models\News';
@@ -21,8 +20,9 @@ class UserController extends ActiveController
         $behaviors['contentNegotiator']['formats']['application/xml'] = 'json';
         return $behaviors;
     }
-    public function actionCreate1()
+    public function actionindex()
     {
+
 
     }
 }

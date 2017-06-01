@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Setting */
 
-$this->title = 'Update Setting: ' . $model->siteid;
-$this->params['breadcrumbs'][] = ['label' => 'Settings', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->siteid, 'url' => ['view', 'id' => $model->siteid]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = '修改站点设置: ' . $model->sitename;
+$this->params['breadcrumbs'][] = ['label' => '站点设置', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->sitename, 'url' => ['view', 'id' => $model->siteid]];
+$this->params['breadcrumbs'][] = '站点设置';
 ?>
 <div class="setting-update">
 
@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
-        'fmodel' => new \app\models\Upload(),
     ]) ?>
 
 </div>

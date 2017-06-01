@@ -15,6 +15,7 @@ use yii\data\Pagination;
 use yii\helpers\Json;
 use yii\helpers\Url;
 use yii\web\Controller;
+use yii\widgets\LinkPager;
 
 class UploadController extends Controller
 {
@@ -41,12 +42,12 @@ class UploadController extends Controller
     {
         $app=\Yii::$app;
         $userid=$app->user->id;
-        $isimage=$app->request->post('isimage');
+        $isimage=$app->request->get('isimage');
         $query=Attachment::find(['userid'=>$userid,'isimage'=>$isimage])->select(['id','filename','filepath']);
         $count=$query->count();
-        $page=$app->request->post('page') ? $app->request->post('page') : 0;
+        $page=$app->request->get('page') ? $app->request->get('page') : 0;
         $pagination=new Pagination(['totalCount' => 8]);
-        $pagination->defaultPageSize=8;
+        $pagination->defaultPageSize=10;
         $pagination->page=$page;
         $articles = $query->offset($pagination->offset)
             ->limit($pagination->limit)
@@ -58,7 +59,10 @@ class UploadController extends Controller
         }else{
             $info['state']=0;
         }
-        echo Json::encode($info);
+        $r['indexPage']= ceil($count/$pagination->defaultPageSize) - 1;
+        $r['info']=$info;
+        echo Json::encode($r);
     }
+
 
 }

@@ -41,6 +41,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value'=>'<img witch="80px" height="80px" src="'.$model->logo.'">',
                 'format' => 'html'
             ],
+            'sitelink',
+            [
+                'label'=>'站点logo',
+                'value'=>'<img witch="80px" height="80px" src="'.$model->backgroundurls.'">',
+                'format' => 'html'
+            ],
             'menus',
             'updatetime:datetime',
         ],
